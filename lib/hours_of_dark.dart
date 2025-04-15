@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -11,9 +10,11 @@ class HoursOfDark extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final size = constraints.biggest.shortestSide;
-        return CustomPaint(
-          size: Size(size, size),
-          painter: HoursOfDarkPainter(),
+        return Center(
+          child: CustomPaint(
+            size: Size(size, size),
+            painter: HoursOfDarkPainter(),
+          ),
         );
       },
     );
@@ -38,7 +39,6 @@ class HoursOfDarkPainter extends CustomPainter {
     for (int i = 0; i < days; i++) {
       final col = i ~/ rows;
       final row = i % rows;
-      log("i =$i, col= $col, row = $row");
 
       final dx = margX + col * cellW + cellW * 0.5;
       final dy = margY + row * cellH + cellH * 0.5;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:generative_art/animated_hours_of_dark.dart';
 import 'package:generative_art/hours_of_dark.dart';
 
 void main() {
@@ -8,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: Center(child: HoursOfDark()),
+        // body: HoursOfDark(), //uncomment for normal version
+        body: AnimatedHoursOfDark(),
       ),
     );
   }
