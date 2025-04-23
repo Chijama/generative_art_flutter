@@ -18,7 +18,7 @@ class _AnimatedHoursOfDarkState extends State<AnimatedHoursOfDark>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: Duration(seconds: 8),
     )..forward();
   }
 
@@ -32,7 +32,6 @@ class _AnimatedHoursOfDarkState extends State<AnimatedHoursOfDark>
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-      
         final size = constraints.biggest.shortestSide;
 
         return AnimatedBuilder(
@@ -42,7 +41,6 @@ class _AnimatedHoursOfDarkState extends State<AnimatedHoursOfDark>
                 alignment: Alignment.center,
                 child: CustomPaint(
                   size: Size(size, size),
-                
                   painter: AnimatedHoursOfDarkPainter(
                       progress: _animationController.value),
                 ),
@@ -81,13 +79,8 @@ class AnimatedHoursOfDarkPainter extends CustomPainter {
       final targetTheta = math.sin(phi) * math.pi * 0.45 * 0.85;
       final targetScale = (math.cos(phi).abs()) * 2 + 1;
 
-      // Animate column by column
-      final colProgress = (progress * cols) - col;
-      final eased = colProgress.clamp(0.0, 1.0);
-      final easedValue = Curves.easeInOut.transform(eased);
-
-      final theta = lerpDouble(0, targetTheta, easedValue)!;
-      final scale = lerpDouble(1, targetScale, easedValue)!;
+      final theta = lerpDouble(0, targetTheta, progress)!;
+      final scale = lerpDouble(1, targetScale, progress)!;
       canvas.save();
       canvas.translate(dx, dy);
       canvas.rotate(theta);
