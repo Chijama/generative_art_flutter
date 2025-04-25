@@ -72,7 +72,7 @@ class AstronomyData {
     return AstronomyData(
       location: Location.fromJson(json['location']),
       date: date,
-      currentTime: DateTime.parse('${json['current_time']}'),
+currentTime: parseDateTime(json['current_time'], date),
       sunrise: parseTime(json['sunrise']),
       sunset: parseTime(json['sunset']),
       sunStatus: json['sun_status'],
@@ -126,6 +126,15 @@ class AstronomyData {
   String _formatDuration(Duration d) {
     return '${d.inHours.toString().padLeft(2, '0')}:${(d.inMinutes % 60).toString().padLeft(2, '0')}:${(d.inSeconds % 60).toString().padLeft(2, '0')}';
   }
+static DateTime parseDateTime(dynamic raw, DateTime baseDate) {
+  final str = raw.toString();
+  if (str.contains('T')) return DateTime.parse(str);
+  return DateFormat('HH:mm:ss.SSS').parse(str).copyWith(
+    year: baseDate.year,
+    month: baseDate.month,
+    day: baseDate.day,
+  );
+}
 
   static Duration _parseDuration(String timeString) {
     final parts = timeString.split(':').map(int.parse).toList();

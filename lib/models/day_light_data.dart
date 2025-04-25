@@ -1,16 +1,16 @@
-class DaylightData {
+class SunlightData {
   final DateTime date;
   final double hoursOfDarkness;
   final double? sunAzimuth;
 
-  DaylightData({
+  SunlightData({
     required this.date,
     required this.hoursOfDarkness,
     this.sunAzimuth,
   });
 
-  factory DaylightData.fromJson(Map<String, dynamic> json) {
-    return DaylightData(
+  factory SunlightData.fromJson(Map<String, dynamic> json) {
+    return SunlightData(
       date: DateTime.parse(json['date']),
       hoursOfDarkness: (json['hoursOfDarkness'] as num).toDouble(),
       sunAzimuth: json['sunAzimuth'] != null

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:generative_art/animated_version.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:generative_art/data_driven_hours_of_dark.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
